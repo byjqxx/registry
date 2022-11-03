@@ -1,0 +1,22 @@
+name: PullContainer
+on:
+  push:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login in ghcr.io Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GHCRIOTOKEN }}
+#       - name: Set variables
+#         run: |
+#           CON=$(cat CONTAINERS)
+#           echo "CONTAINER=$CON" >> $GITHUB_ENV
+      - name: Docker pull and push
+        run: |
+          docker pull k8s.gcr.io/ingress-nginx/controller:v0.35.0  
+          docker tag  k8s.gcr.io/ingress-nginx/controller:v0.35.0  ghcr.io/zuoguocai/ingress-nginx/controller:v0.35.0       
+          docker push ghcr.io/zuoguocai/ingress-nginx/controller:v0.35.0
