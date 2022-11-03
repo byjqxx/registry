@@ -17,6 +17,7 @@ jobs:
 #           echo "CONTAINER=$CON" >> $GITHUB_ENV
       - name: Docker pull and push
         run: |
-          docker pull k8s.gcr.io/ingress-nginx/controller:v0.35.0  
-          docker tag  k8s.gcr.io/ingress-nginx/controller:v0.35.0  ghcr.io/zuoguocai/ingress-nginx/controller:v0.35.0       
-          docker push ghcr.io/zuoguocai/ingress-nginx/controller:v0.35.0
+          docker pull k8s.gcr.io/kube-state-metrics/kube-state-metrics:v2.6.0
+          docker tag  k8s.gcr.io/kube-state-metrics/kube-state-metrics:v2.6.0  ghcr.io/kube-state-metrics/kube-state-metrics:v2.6.0       
+          #docker push ghcr.io/zuoguocai/ingress-nginx/controller:v0.35.0
+          docker push ghcr.io/kube-state-metrics/kube-state-metrics:v2.6.0
